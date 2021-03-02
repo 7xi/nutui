@@ -3,40 +3,29 @@
 ## 基本用法
 
 ```html
-<nut-coupon :item="item" :type="1" />
+<nut-coupon 
+  type="1" 
+  cText1="每满10减1" 
+  cText2="仅可购买京贴测试商品" 
+  state="0"
+  @click="handleClick()" 
+/>
 ```
 
 ## 京贴券
 
 ```html
-<nut-coupon :item="item" :type="1" @click="handleClick()" />
+<nut-coupon 
+  type="1" 
+  cText1="每满10减1" 
+  cText2="仅可购买京贴测试商品" 
+  state="0"
+  @click="handleClick()" 
+/>
 ```
 
 ```javascript
 export default {
-  data() {
-    return {
-      couponList1: {
-        list: [
-          {
-            extension: {
-              disCount: "1.0",
-              quota: "10.0",
-              limitStr: "仅可购买京贴测试商品",
-              soldOut: 0,
-              couponStyle: 28,
-              couponType: 1,
-              key: "m4a4t8ear2i8a9l5c5m0s4d2e9956535",
-              roleId: "44621386",
-              venderId: 0,
-              soldOut: 0,
-              cpnResultCode: 200
-            }
-          }
-        ]
-      }
-    };
-  },
   methods: {
     handleClick() {
       this.$toast.text('很抱歉，没抢到~~');
@@ -48,38 +37,18 @@ export default {
 ## 品类券无图
 
 ```html
-<nut-coupon :item="item" :type="2" :image="false" @click="handleClick()" />
+<nut-coupon 
+  type="2" 
+  discount="2"
+  cText1="满49元可用" 
+  cText2="仅可购买年货节头号京贴活动商品" 
+  state="0"
+  @click="handleClick()" 
+/>
 ```
 
 ```javascript
 export default {
-  data() {
-    return {
-      couponList2: {
-				list: [
-          {
-            extension: {
-              disCount: "1.0",
-              quota: "10.0",
-              limitStr: "仅可购买京贴测试商品",
-              soldOut: 0,
-              couponStyle: 0,
-              couponType: 1,
-              key: "m4a4t8ear2i8a9l5c5m0s4d2e9956535",
-              roleId: "44621386",
-              venderId: 0,
-              subSku: [{
-                img: "jfs/t1/137621/21/15770/49049/5fbe0520E043b4ce5/f8a1e0e877908389.jpg",
-                sku: 100016773618,
-              }],
-              soldOut: 0,
-              cpnResultCode: 200,
-            },
-          }
-        ]
-			}
-    };
-  },
   methods: {
     handleClick() {
       this.$toast.text('很抱歉，没抢到~~');
@@ -88,41 +57,21 @@ export default {
 };
 ```
 
-## 品类券无图
+## 品类券有图
 
 ```html
-<nut-coupon :item="item" :type="2" :image="true" @click="handleClick()" />
+<nut-coupon 
+  type="2" 
+  discount="2"
+  cText1="满49元可用" 
+  cText2="仅可购买年货节头号京贴活动商品" 
+  cImage="http://m.360buyimg.com/babel/s250x250_jfs/t1/137621/21/15770/49049/5fbe0520E043b4ce5/f8a1e0e877908389.jpg"
+  state="0"
+  @click="handleClick()" 
+/>
 ```
 ```javascript
 export default {
-  components: {},
-  data() {
-    return {
-      couponList3: {
-				list: [
-          {
-            extension: {
-              disCount: "1.0",
-              quota: "10.0",
-              limitStr: "仅可购买京贴测试商品",
-              soldOut: 0,
-              couponStyle: 0,
-              couponType: 1,
-              key: "m4a4t8ear2i8a9l5c5m0s4d2e9956535",
-              roleId: "44621386",
-              venderId: 0,
-              subSku: [{
-                img: "jfs/t1/137621/21/15770/49049/5fbe0520E043b4ce5/f8a1e0e877908389.jpg",
-                sku: 100016773618,
-              }],
-              soldOut: 0,
-              cpnResultCode: 200,
-            },
-          }
-        ]
-			}
-    };
-  },
   methods: {
     handleClick() {
       this.$toast.text('很抱歉，没抢到~~');
@@ -135,6 +84,9 @@ export default {
 
 | 字段              | 说明                                       | 类型    | 默认值   |
 | ----------------- | ------------------------------------------ | ------- | -------- |
-| item       | 优惠券数据                              | object  | -      | 
-| type         | 优惠券品类类型                              | String  | 1(京贴)、2（品类券）       | 1
-| Image    | 优惠券图片                | Boolean  | false     |
+| type         | 优惠券品类类型                              | String   | 1：京贴、2：品类券 | 
+| discount     | 优惠券品类额度金额                           | String  | -       | 
+| cText1       | 优惠券第一行文字                            | String   | -       | 
+| cText2       | 优惠券第二行文字                            | String   | -       | 
+| cImage       | 优惠券图片                                 | Boolean  | -       | 
+| state        | 优惠券状态（0:未领取;  1: 已领取;  2: 已抢光） | Boolean  | 0       |
